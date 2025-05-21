@@ -1,0 +1,27 @@
+[package]
+name = "kanga-dpdk-rte-mbuf-sys"
+description = "FFI bindings to the DPDK rte_mbuf library"
+authors.workspace = true
+edition.workspace = true
+homepage.workspace = true
+license.workspace = true
+repository.workspace = true
+version.workspace = true
+build = "build.rs"
+links = "rte_mbuf"
+
+[lints.rust.unexpected_cfgs]
+level = "warn"
+check-cfg = [
+    'cfg(dpdk_link_mode, values("dynamic", "static"))',
+    'cfg(dpdk_major, values(any()))',
+    'cfg(dpdk_minor, values(any()))',
+]
+
+[dependencies]
+kanga-dpdk-rte-eal-sys = { path = "../kanga-dpdk-rte-eal-sys" }
+kanga-dpdk-rte-mempool-sys = { path = "../kanga-dpdk-rte-mempool-sys" }
+libc = "0.2.172"
+
+[build-dependencies]
+kanga-dpdk-build = { path = "../kanga-dpdk-build" }

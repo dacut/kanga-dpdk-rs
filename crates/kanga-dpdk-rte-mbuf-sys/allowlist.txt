@@ -1,0 +1,5 @@
+rte_get_ptype.*
+rte_get_rx_ol_flag.*
+rte_get_tx_ol_flag.*
+rte_mbuf.*
+rte_pktmbuf.*
