@@ -1,0 +1,25 @@
+[package]
+name = "kanga-dpdk-rte-kvargs-sys"
+description = "FFI bindings to the DPDK rte_kvargs library"
+authors.workspace = true
+edition.workspace = true
+homepage.workspace = true
+license.workspace = true
+repository.workspace = true
+version.workspace = true
+build = "build.rs"
+links = "rte_kvargs"
+
+[lints.rust.unexpected_cfgs]
+level = "warn"
+check-cfg = [
+    'cfg(dpdk_link_mode, values("dynamic", "static"))',
+    'cfg(dpdk_major, values(any()))',
+    'cfg(dpdk_minor, values(any()))',
+]
+
+[dependencies]
+libc = "0.2.172"
+
+[build-dependencies]
+kanga-dpdk-build = { path = "../kanga-dpdk-build" }
