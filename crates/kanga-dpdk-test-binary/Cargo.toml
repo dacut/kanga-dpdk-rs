@@ -1,0 +1,12 @@
+[package]
+name = "kanga-dpdk-test-binary"
+description = "Test binary for kanga-dpdk"
+authors.workspace = true
+edition.workspace = true
+homepage.workspace = true
+license.workspace = true
+repository.workspace = true
+version.workspace = true
+
+[dependencies]
+kanga-dpdk-rte-eal-sys = { path = "../kanga-dpdk-rte-eal-sys" }

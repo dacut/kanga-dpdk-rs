@@ -1,0 +1,2 @@
+rte_log.*
+RTE_LOG.*

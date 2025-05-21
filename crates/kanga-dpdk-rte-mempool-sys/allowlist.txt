@@ -1,0 +1,3 @@
+rte_mempool.*
+RTE_MEMPOOL.*
+MEMPOOL.*

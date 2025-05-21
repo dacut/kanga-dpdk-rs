@@ -1,0 +1,21 @@
+[package]
+name = "kanga-dpdk-build"
+description = "Build-time utilities for Kanga DPDK bindings"
+authors.workspace = true
+edition.workspace = true
+homepage.workspace = true
+license.workspace = true
+repository.workspace = true
+version.workspace = true
+
+[lints.rust.unexpected_cfgs]
+level = "warn"
+check-cfg = [
+    'cfg(dpdk_link_mode, values("dynamic", "static"))',
+    'cfg(dpdk_major, values(any()))',
+    'cfg(dpdk_minor, values(any()))',
+]
+
+[dependencies]
+bindgen = "0.71.1"
+pkg-config = "0.3.32"
