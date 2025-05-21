@@ -24,4 +24,5 @@ kanga-dpdk-rte-mempool-sys = { path = "../kanga-dpdk-rte-mempool-sys" }
 libc = "0.2.172"
 
 [build-dependencies]
+cc = "1.2.23"
 kanga-dpdk-build = { path = "../kanga-dpdk-build" }
