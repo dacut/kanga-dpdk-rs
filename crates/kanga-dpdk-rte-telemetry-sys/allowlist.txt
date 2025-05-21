@@ -1,1 +1,3 @@
 rte_tel.*
+telemetry_cb
+telemetry_arg_cb

@@ -4,7 +4,10 @@
 #![allow(unsafe_op_in_unsafe_fn)]
 #![allow(clippy::upper_case_acronyms)]
 
-pub type FILE = libc::FILE;
+pub use {
+    kanga_dpdk_rte_eal_sys::{rte_iova_t, rte_memzone, rte_spinlock_t},
+    libc::FILE,
+};
 include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
 #[cfg(test)]

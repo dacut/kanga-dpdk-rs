@@ -4,7 +4,7 @@
 #![allow(unsafe_op_in_unsafe_fn)]
 #![allow(clippy::upper_case_acronyms)]
 
-type FILE = libc::FILE;
+pub use libc::FILE;
 include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
 #[cfg(test)]

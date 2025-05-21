@@ -14,6 +14,7 @@ pub type BoxError = Box<dyn Error + Send + Sync + 'static>;
 
 const ALLOWLIST_FILE_NAME: &str = "allowlist.txt";
 const BLOCKLIST_FILE_NAME: &str = "blocklist.txt";
+const OPAQUE_FILE_NAME: &str = "opaque.txt";
 
 /// Information about the DPDK library.
 #[derive(Clone, Debug)]
@@ -98,6 +99,8 @@ impl DpdkMetadata {
         writeln!(w, "cargo::rustc-check-cfg=cfg(dpdk_major, values(any()))")?;
         writeln!(w, "cargo::rustc-check-cfg=cfg(dpdk_minor, values(any()))")?;
         writeln!(w, "cargo::rustc-check-cfg=cfg(dpdk_patch, values(any()))")?;
+        writeln!(w, "cargo::rerun-if-changed=bindings.h")?;
+        writeln!(w, "cargo::rerun-if-changed=build.rs")?;
 
         for link_path in &self.link_paths {
             writeln!(w, "cargo::rustc-link-search=native={}", link_path.display())?;
@@ -108,6 +111,9 @@ impl DpdkMetadata {
         }
         if exists(BLOCKLIST_FILE_NAME).expect("Unable to check for blocklist.txt") {
             writeln!(w, "cargo::rerun-if-changed={BLOCKLIST_FILE_NAME}")?;
+        }
+        if exists(OPAQUE_FILE_NAME).expect("Unable to check for opaque.txt") {
+            writeln!(w, "cargo::rerun-if-changed={OPAQUE_FILE_NAME}")?;
         }
 
         Ok(())
@@ -140,6 +146,7 @@ impl DpdkMetadata {
     pub fn bindgen_builder(&self, header: &str) -> BindgenBuilder {
         let mut builder = self
             .add_include_paths(BindgenBuilder::default())
+            .allowlist_recursively(false)
             .header(header)
             .generate_cstr(true)
             .wrap_unsafe_ops(true)
@@ -163,6 +170,17 @@ impl DpdkMetadata {
                 let line = line.trim();
                 if !line.is_empty() {
                     builder = builder.blocklist_item(line.trim());
+                }
+            }
+        }
+
+        if let Ok(opaque) = File::open(OPAQUE_FILE_NAME) {
+            let opaque = BufReader::new(opaque);
+            for line in opaque.lines() {
+                let line = line.unwrap_or_else(|_| panic!("Unable to read line from {OPAQUE_FILE_NAME}"));
+                let line = line.trim();
+                if !line.is_empty() {
+                    builder = builder.opaque_type(line.trim());
                 }
             }
         }
