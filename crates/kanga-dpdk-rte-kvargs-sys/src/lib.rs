@@ -8,8 +8,7 @@ include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
 #[cfg(test)]
 mod tests {
-    use super::*;
-    use std::ptr::null;
+    use {super::*, std::ptr::null};
 
     #[test]
     fn test_kvargs_parse() {
@@ -17,7 +16,7 @@ mod tests {
         let valid_key_1 = c"foo".as_ptr();
         let valid_key_2 = c"baz".as_ptr();
         let valid_keys = [valid_key_1, valid_key_2, null()];
-        
+
         unsafe {
             let kvargs = rte_kvargs_parse(args, valid_keys.as_ptr());
             assert_eq!((*kvargs).count, 2);

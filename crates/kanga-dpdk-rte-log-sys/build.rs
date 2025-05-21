@@ -1,9 +1,6 @@
 use {
     kanga_dpdk_build::DpdkMetadata,
-    std::{
-        env,
-        path::PathBuf,
-    },
+    std::{env, path::PathBuf},
 };
 
 fn main() {
@@ -13,5 +10,7 @@ fn main() {
     let bindings = metadata.bindgen_builder("bindings.h").generate().expect("Unable to generate bindings");
 
     let out_path = PathBuf::from(env::var("OUT_DIR").expect("OUT_DIR not set"));
-    bindings.write_to_file(out_path.join("bindings.rs")).unwrap_or_else(|_| panic!("Failed to write bindings to {}", out_path.display()));
+    bindings
+        .write_to_file(out_path.join("bindings.rs"))
+        .unwrap_or_else(|_| panic!("Failed to write bindings to {}", out_path.display()));
 }
