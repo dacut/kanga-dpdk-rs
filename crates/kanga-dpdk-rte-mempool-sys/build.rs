@@ -7,6 +7,9 @@ fn main() {
     let metadata = DpdkMetadata::new().expect("Unable to get DPDK metadata");
     metadata.print_cargo_metadata().expect("Unable to print DPDK metadata");
     metadata.print_lib_link("rte_mempool");
+    metadata.print_lib_link("rte_eal");
+    metadata.print_lib_link("rte_ring");
+    metadata.print_lib_link("rte_telemetry");
     let bindings = metadata.bindgen_builder("bindings.h").generate().expect("Unable to generate bindings");
 
     let out_path = PathBuf::from(env::var("OUT_DIR").expect("OUT_DIR not set"));
