@@ -7,11 +7,6 @@ pub use libc::{__s32, __u8, __u16, __u32, __u64, FILE, timespec};
 
 include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
-unsafe extern "C" {
-    pub unsafe fn kanga_dpdk_rte_errno_get() -> i32;
-    pub unsafe fn kanga_dpdk_rte_errno_set(code: i32);
-}
-
 #[cfg(test)]
 mod tests {
     use {super::*, std::ffi::CStr};

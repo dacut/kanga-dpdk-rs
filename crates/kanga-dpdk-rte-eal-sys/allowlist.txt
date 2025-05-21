@@ -60,3 +60,4 @@ rte_version.*
 rte_vfio.*
 rte_zmalloc.*
 vfio.*
+kanga_dpdk.*

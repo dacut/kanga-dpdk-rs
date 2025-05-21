@@ -17,6 +17,7 @@ fn main() {
         .includes(&metadata.include_paths)
         .file("rust_accessors.c")
         .static_flag(true)
+        .flag_if_supported("-Werror")
         .compile("rte_eal_rust_accessors");
     println!("cargo:rustc-link-lib=static=rte_eal_rust_accessors");
 

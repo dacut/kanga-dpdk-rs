@@ -48,3 +48,4 @@
 #include <rte_uuid.h>
 #include <rte_version.h>
 #include <rte_vfio.h>
+#include "rust_accessors.h"
