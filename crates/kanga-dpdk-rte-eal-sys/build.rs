@@ -12,7 +12,7 @@ fn main() {
     metadata.print_lib_link("rte_kvargs");
     metadata.print_lib_link("numa");
 
-    // We need accessors to the thread local variables (rte_errno) in the C code
+    // We need accessors to the thread local variables and static inline functions in the C code
     cc::Build::new()
         .includes(&metadata.include_paths)
         .file("rust_accessors.c")
