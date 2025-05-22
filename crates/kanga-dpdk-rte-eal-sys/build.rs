@@ -18,6 +18,8 @@ fn main() {
         .file("rust_accessors.c")
         .static_flag(true)
         .flag_if_supported("-Werror")
+        .flag_if_supported("-Wno-deprecated-declarations")
+        .flag_if_supported("-mssse3")
         .compile("rte_eal_rust_accessors");
     println!("cargo:rustc-link-lib=static=rte_eal_rust_accessors");
 

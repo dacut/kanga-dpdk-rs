@@ -6,6 +6,7 @@ SOCKET_ID_ANY
 eal_tls_key
 lcore_function_t
 phys_addr_t
+rte_bitmap.*
 rte_bitset.*
 rte_bus.*
 rte_calloc.*
@@ -32,6 +33,7 @@ rte_keepalive.*
 rte_lcore.*
 rte_malloc.*
 rte_mcfg.*
+rte_mcslock.*
 rte_mem_.*
 rte_memdump
 rte_memory_get.*
@@ -46,6 +48,8 @@ rte_rmt.*
 rte_rwlock.*
 rte_service.*
 rte_set.*
+rte_seqcount.*
+rte_seqlock.*
 rte_socket.*
 rte_spinlock.*
 rte_srand
@@ -53,6 +57,8 @@ rte_str.*
 rte_sys.*
 rte_tailq.*
 rte_thread.*
+rte_ticketlock.*
+rte_timecounter.*
 rte_trace.*
 rte_usage_hook_t
 rte_uuid.*
